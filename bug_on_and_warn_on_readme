@@ -30,3 +30,51 @@ It also prints the call stack
 
 [  101.160162]  fun1+0x1a0/0x1bc [module_name]
 [  101.162336]  fun2+0x178/0x318 [module_name]
+
+
+=================================================================
+WARN_ON(1);
+WARN_ON(a>b)
+
+It will not reboot the device. It ll just print the stack.
+
+Example:
+
+714.074791] WARNING: CPU: 1 PID: 0 at 1/2/3/file.c:45 function+0x60/0x224 [module_name]
+[  714.207865] Call trace:
+[  714.211161]  xt_recent
+[  714.212986]  function+0x60/0x224 [module_name]
+[  714.215849]  xt_quota
+[  714.270972]  handle_softirqs+0x1b4/0x1f8
+[  714.274444]  xt_hl
+[  714.276961]  __do_softirq+0x10/0x18
+[  714.279825]  xt_helper
+[  714.282428]  ____do_softirq+0xc/0x14
+[  714.284425]  xt_esp
+[  714.286856]  call_on_irq_stack+0x24/0x34
+[  714.289200]  xt_ecn
+[  714.291891]  do_softirq_own_stack+0x18/0x20
+[  714.294495]  xt_dscp
+[  714.297099]  irq_exit_rcu+0x6c/0xb4
+[  714.299097]  xt_conntrack
+[  714.301874]  el1_interrupt+0x34/0x5c
+[  714.304390]  xt_connmark
+[  714.306647]  el1h_64_irq_handler+0x14/0x1c
+[  714.308645]  xt_connlimit
+[  714.310902]  el1h_64_irq+0x68/0x6c
+[  714.313506]  xt_connbytes
+[  714.315936]  default_idle_call+0x24/0x34
+[  714.318280]  xt_comment
+[  714.320971]  do_idle+0x124/0x20c
+[  714.323141]  xt_cgroup
+[  714.325052]  cpu_startup_entry+0x30/0x34
+[  714.328176]  xt_bpf
+[  714.330347]  kernel_init+0x0/0x120
+[  714.333384]  xt_addrtype
+[  714.335207]  arch_post_acpi_subsys_init+0x0/0x8
+[  714.337464]  xt_TCPMSS
+[  714.340589]  console_on_rootfs+0x0/0x64
+[  714.343280]  xt_REDIRECT
+[  714.345797]  __primary_switched+0xb4/0xbc
+[  714.348141]  xt_NETMAP
+[  714.350400] ---[ end trace 0000000000000000 ]---
